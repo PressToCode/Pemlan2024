@@ -1,5 +1,6 @@
 package NonGUI.Classes.Kendaraan;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -51,6 +52,13 @@ public class inputKendaraan {
     public void cleanTerminal() {
         // * Membersihkan Terminal
         System.out.print("\033[H\033[2J");
+
+        try {
+            if (System.getProperty("os.name").contains("Windows"))
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            else
+                Runtime.getRuntime().exec("clear");
+        } catch (IOException | InterruptedException ex) {}
     }
 
     public void inputData() {

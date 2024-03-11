@@ -1,5 +1,7 @@
 package NonGUI.Classes.Karyawan;
 
+import java.io.IOException;
+
 public class validatorKaryawan {
     public boolean Telfon(String Telfon) {
         /* 
@@ -105,8 +107,7 @@ public class validatorKaryawan {
         if(YesNo.equals("N") || YesNo.equals("n")) {
             inputKaryawan.temp = true;
 
-            // Membersihkan terminal
-            System.out.print("\033[H\033[2J");
+            cleanTerminal();
 
             System.out.println("Menutup program...");
 
@@ -116,10 +117,22 @@ public class validatorKaryawan {
                 e.printStackTrace();
             }
 
-            // Membersihkan terminal
-            System.out.print("\033[H\033[2J");
+            cleanTerminal();
+            
         } else {
             inputKaryawan.stopLoop = false;
         }
+    }
+
+    public void cleanTerminal() {
+        // Membersihkan terminal
+        System.out.print("\033[H\033[2J");
+        
+        try {
+        if (System.getProperty("os.name").contains("Windows"))
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        else
+            Runtime.getRuntime().exec("clear");
+        } catch (IOException | InterruptedException ex) {}
     }
 }

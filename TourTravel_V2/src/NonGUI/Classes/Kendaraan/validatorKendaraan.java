@@ -1,5 +1,7 @@
 package NonGUI.Classes.Kendaraan;
 
+import java.io.IOException;
+
 public class validatorKendaraan {
     public boolean Tahun(String x) {
         if(x.length() < 5 && x.length() > 0) {
@@ -43,8 +45,7 @@ public class validatorKendaraan {
         if(YesNo.equals("N") || YesNo.equals("n")) {
             inputKendaraan.temp = true;
 
-            // Membersihkan terminal
-            System.out.print("\033[H\033[2J");
+            cleanTerminal();
 
             System.out.println("Menutup program...");
 
@@ -54,10 +55,21 @@ public class validatorKendaraan {
                 e.printStackTrace();
             }
 
-            // Membersihkan terminal
-            System.out.print("\033[H\033[2J");
+            cleanTerminal();
         } else {
             inputKendaraan.stopLoop = false;
         }
+    }
+
+    public void cleanTerminal() {
+        // * Membersihkan Terminal
+        System.out.print("\033[H\033[2J");
+
+        try {
+            if (System.getProperty("os.name").contains("Windows"))
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            else
+                Runtime.getRuntime().exec("clear");
+        } catch (IOException | InterruptedException ex) {}
     }
 }
