@@ -10,4 +10,4 @@ Cara menggunakan aplikasi :
 2) Buka /TourTravel_V2/src/NonGUI/Object/
 3) Buka 'NonGUIMain.java' di IDE dan jalankan
 
-![Class Diagram V2](https://github.com/PressToCode/Pemlan2024/assets/137992170/bbc54bfd-6917-46b1-a93e-759101b52b35)
+![Class Diagram V3](https://github.com/PressToCode/Pemlan2024/assets/137992170/1c611c22-8aa1-408c-a94e-b0c5dcf20ccc)
