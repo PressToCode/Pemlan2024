@@ -3,7 +3,7 @@ package NonGUI.Classes.Karyawan;
 public class templateKaryawan {
     // * Variabel
     private String Nama;
-    private String Alamat;
+    public String Alamat;
     private String Telfon;
     private String JenisKelamin;
     private String Kategori;
@@ -13,10 +13,6 @@ public class templateKaryawan {
     // * Setter
     public void setNama(String Nama) {
         this.Nama = Nama;
-    }
-
-    public void setAlamat(String Alamat) {
-        this.Alamat = Alamat;
     }
 
     public void setTelfon(String Telfon) {
@@ -42,10 +38,6 @@ public class templateKaryawan {
     // * Getter
     public String getNama() {
         return this.Nama;
-    }
-
-    public String getAlamat() {
-        return this.Alamat;
     }
 
     public String getTelfon() {

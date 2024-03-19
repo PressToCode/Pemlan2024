@@ -9,18 +9,18 @@ import NonGUI.Classes.Kendaraan.*;
 
 public class Options {
     // Variable
-    int instanceKaryawan = 0;
-    int instanceKendaraan = 0;
-    boolean shutDown = false;
+    private int instanceKaryawan = 0;
+    private int instanceKendaraan = 0;
+    private boolean shutDown = false;
 
     // * Deklarasi Scanner
-    static Scanner Input = new Scanner(System.in);
+    private static Scanner Input = new Scanner(System.in);
 
     // Array instance dari class 'inputKaryawan'
-    inputKaryawan[] Karyawan = new inputKaryawan[6];
+    private inputKaryawan[] Karyawan = new inputKaryawan[6];
 
     // Array instance dari class 'inputKendaraan'
-    inputKendaraan[] Kendaraan = new inputKendaraan[6];
+    private inputKendaraan[] Kendaraan = new inputKendaraan[6];
 
     public Options() {
 
@@ -62,10 +62,6 @@ public class Options {
                     matikanProgram();
                     break isRunning;
 
-                case 6:
-                    cleanTerminal();
-                    break;
-
                 default:
                     System.out.println("Input invalid. Tolong ulangi (Angka 1-5).");
                     break;
@@ -73,18 +69,17 @@ public class Options {
         }
     }
 
-    public void showKalimat() {
+    private void showKalimat() {
         System.out.println("Pilih program yang ingin dijalankan :");
         System.out.println("1) Program Input Data Karyawan (Kasus 2.1a)");
         System.out.println("2) Program Input Data Kendaraan (Kasus 3.1a)");
         System.out.println("3) Tampilkan data program karyawan");
         System.out.println("4) Tampilkan data program kendaraan");
         System.out.println("5) Matikan Program");
-        System.out.println("6) Clean Terminal");
         System.out.print("\n= ");
     }
 
-    public static void cleanTerminal() {
+    private static void cleanTerminal() {
         // * Membersihkan Terminal
         System.out.print("\033[H\033[2J");
 
@@ -96,7 +91,7 @@ public class Options {
         } catch (IOException | InterruptedException ex) {}
     }
 
-    public void mulaiProgram(String Program) {
+    private void mulaiProgram(String Program) {
         cleanTerminal();
 
         if(Program.equals("Karyawan")) {
@@ -126,13 +121,13 @@ public class Options {
         }
     }
 
-    public void matikanProgram() {
+    private void matikanProgram() {
         cleanTerminal();
         System.out.println("Menutup program...");
         pauseSecond();
     }
 
-    public void pauseSecond() {
+    private void pauseSecond() {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -140,7 +135,7 @@ public class Options {
         }
     }
 
-    public void opsiKaryawan() {
+    private void opsiKaryawan() {
         cleanTerminal();
 
         if(instanceKaryawan != 0) {
@@ -169,7 +164,7 @@ public class Options {
         }
     }
 
-    public void opsiKendaraan() {
+    private void opsiKendaraan() {
         cleanTerminal();
         
         if(instanceKendaraan != 0) {
@@ -196,5 +191,9 @@ public class Options {
             System.out.println("Tidak tersedia data kendaraan");
             pauseSecond();
         }
+    }
+
+    public static void main(String[] args) {
+        new Options();
     }
 }

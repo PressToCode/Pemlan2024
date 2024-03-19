@@ -6,19 +6,18 @@ import java.util.Scanner;
 
 public class inputKaryawan {
     // * Variable
-    public static int Data = 1;
-    public int localData;
-    public static boolean stopLoop = false;
-    public static boolean temp = false;
+    private static int Data = 1;
+    private int localData;
+    private boolean stopLoop = false;
 
     // * Deklarasi array untuk class "templateKaryawan"
-    static templateKaryawan[] Karyawan = new templateKaryawan[6];
+    protected static templateKaryawan[] Karyawan = new templateKaryawan[6];
 
     // * Deklarasi Validator Class
-    validatorKaryawan valid = new validatorKaryawan();
+    private validatorKaryawan valid = new validatorKaryawan();
 
     // * Deklarasi Scanner
-    static Scanner Input = new Scanner(System.in);
+    private static Scanner Input = new Scanner(System.in);
 
     public inputKaryawan() {
         cleanTerminal();
@@ -48,7 +47,7 @@ public class inputKaryawan {
         }
     }
 
-    public void cleanTerminal() {
+    private void cleanTerminal() {
         // * Membersihkan Terminal
         System.out.print("\033[H\033[2J");
 
@@ -60,16 +59,16 @@ public class inputKaryawan {
         } catch (IOException | InterruptedException ex) {}
     }
 
-    public void inputData() {
+    private void inputData() {
         // Nama
         System.out.println("\n==================");
         System.out.print("Nama Karyawan " + Data + " = ");
-        Karyawan[Data].setNama(Input.nextLine());
+        while(valid.Nama(Input.nextLine())) { /* Kosong */}
 
         // Alamat
         System.out.println();
         System.out.print("Alamat Karyawan " + Data + " = ");
-        Karyawan[Data].setAlamat(Input.nextLine());
+        Karyawan[Data].Alamat = Input.nextLine();
 
         // Telfon
         System.out.println();
@@ -104,7 +103,7 @@ public class inputKaryawan {
         while(valid.Status(Input.nextLine())) { /* Kosong */ }
 
         // Rute (Jika status bekerja dan bukan admin)
-        if(Karyawan[inputKaryawan.Data].getStatus().equalsIgnoreCase("Bekerja") && !Karyawan[inputKaryawan.Data].getKategori().equalsIgnoreCase("Admin")) {
+        if(Karyawan[getData()].getStatus().equalsIgnoreCase("Bekerja") && !Karyawan[getData()].getKategori().equalsIgnoreCase("Admin")) {
             System.out.println("\n==================");
             System.out.println("Pilihan rute : ");
             System.out.println("1) Surabaya - Malang");
@@ -120,13 +119,11 @@ public class inputKaryawan {
 
         // Lanjutkan program atau tidak
         System.out.println();
-        System.out.print("Isi data lagi? (Y/N) : ");
-        valid.YesNo(Input.nextLine());
-        if(temp) {
+        System.out.print("Isi data lagi? (Y/N; default 'Y') : ");
+        if(valid.YesNo(Input.nextLine())) {
             localData = Data;
             Data = 1;
             stopLoop = true;
-            temp = false;
         }
     }
 
@@ -136,7 +133,7 @@ public class inputKaryawan {
         for(int i = 1; i <= localData; i++) {
             System.out.println("\n==================");
             System.out.print("Nama Karyawan " + i + " = " + Karyawan[i].getNama());
-            System.out.print("\nAlamat Karyawan " + i + " = " + Karyawan[i].getAlamat());
+            System.out.print("\nAlamat Karyawan " + i + " = " + Karyawan[i].Alamat);
             System.out.print("\nTelfon Karyawan " + i + " = " + Karyawan[i].getTelfon());
             System.out.print("\nJenis Kelamin Karyawan " + i + " = " + Karyawan[i].getJenisKelamin());
             System.out.print("\nKategori Karyawan " + i + " = " + Karyawan[i].getKategori());
@@ -144,5 +141,9 @@ public class inputKaryawan {
             System.out.print("\nRute yang dituju oleh karyawan " + i + " = " + Karyawan[i].getRute());
             System.out.println("\n");
         }
+    }
+
+    public static int getData() {
+        return Data;
     }
 }

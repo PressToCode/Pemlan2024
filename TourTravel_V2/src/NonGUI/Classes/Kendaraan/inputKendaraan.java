@@ -6,19 +6,18 @@ import java.util.Scanner;
 
 public class inputKendaraan {
     // * Variable
-    public static int Data = 1;
-    public int localData;
-    public static boolean stopLoop = false;
-    public static boolean temp = false;
+    private static int Data = 1;
+    private int localData;
+    private boolean stopLoop = false;
     
     // * Deklarasi array 'templateKendaraan'
-    static templateKendaraan[] Kendaraan = new templateKendaraan[6];
+    protected static templateKendaraan[] Kendaraan = new templateKendaraan[6];
 
     // * Deklarasi validator class
-    validatorKendaraan valid = new validatorKendaraan();
+    private validatorKendaraan valid = new validatorKendaraan();
 
     // * Deklarasi Scanner
-    Scanner Input = new Scanner(System.in);
+    private Scanner Input = new Scanner(System.in);
 
     public inputKendaraan() {
         cleanTerminal();
@@ -65,17 +64,17 @@ public class inputKendaraan {
         // Plat
         System.out.println("\n==================");
         System.out.print("Plat Kendaraan " + Data + " = ");
-        Kendaraan[Data].setPlat(Input.nextLine());
+        Kendaraan[Data].noPlat = Input.nextLine();
 
         // Merk
         System.out.println();
         System.out.print("Merk Kendaraan " + Data + " = ");
-        Kendaraan[Data].setMerk(Input.nextLine());
+        Kendaraan[Data].merkMobil = Input.nextLine();
 
         // Warna
         System.out.println();
         System.out.print("Warna Kendaraan " + Data + " = ");
-        Kendaraan[Data].setWarna(Input.nextLine());
+        Kendaraan[Data].warnaMobil = Input.nextLine();
 
         // Tahun Keluaran
         System.out.println();
@@ -95,12 +94,10 @@ public class inputKendaraan {
         // Lanjutkan program atau tidak
         System.out.println();
         System.out.print("Isi data lagi? (Y/N) : ");
-        valid.YesNo(Input.nextLine());
-        if(temp) {
+        if(valid.YesNo(Input.nextLine())) {
             localData = Data;
             Data = 1;
             stopLoop = true;
-            temp = false;
         }
     }
 
@@ -109,12 +106,16 @@ public class inputKendaraan {
 
         for(int i = 1; i <= localData; i++) {
             System.out.println("\n==================");
-            System.out.print("Plat Kendaraan " + i + " = " + Kendaraan[i].getPlat());
-            System.out.print("\nMerk Kendaraan " + i + " = " + Kendaraan[i].getMerk());
-            System.out.print("\nWarna Kendaraan " + i + " = " + Kendaraan[i].getWarna());
+            System.out.print("Plat Kendaraan " + i + " = " + Kendaraan[i].noPlat);
+            System.out.print("\nMerk Kendaraan " + i + " = " + Kendaraan[i].merkMobil);
+            System.out.print("\nWarna Kendaraan " + i + " = " + Kendaraan[i].warnaMobil);
             System.out.print("\nTahun Keluaran Kendaraan " + i + " = " + Kendaraan[i].getTahun());
             System.out.print("\nStatus Kendaraan " + i + " = " + Kendaraan[i].getStatus());
             System.out.println("\n");
         }
+    }
+
+    public static int getData() {
+        return Data;
     }
 }

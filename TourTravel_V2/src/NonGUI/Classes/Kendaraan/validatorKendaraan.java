@@ -12,7 +12,7 @@ public class validatorKendaraan {
                 Long.valueOf(x.replaceAll("\\s+",""));
 
                 // Apabila valid, input data
-                inputKendaraan.Kendaraan[inputKendaraan.Data].setTahun(x);
+                inputKendaraan.Kendaraan[inputKendaraan.getData()].setTahun(x);
 
                 return false;
             } catch(NumberFormatException e) {
@@ -29,10 +29,10 @@ public class validatorKendaraan {
 
     public boolean Status(String x) {
         if(x.replaceAll("\\s+","").equalsIgnoreCase("Bergerak") || x.equals("1")) {
-            inputKendaraan.Kendaraan[inputKendaraan.Data].setGerak();
+            inputKendaraan.Kendaraan[inputKendaraan.getData()].setGerak();
             return false;
         } else if (x.replaceAll("\\s+","").equalsIgnoreCase("Diam") || x.equals("2")) {
-            inputKendaraan.Kendaraan[inputKendaraan.Data].setDiam();
+            inputKendaraan.Kendaraan[inputKendaraan.getData()].setDiam();
             return false;
         } else {
             System.out.println("Status invalid. Ulangi lagi!");
@@ -41,9 +41,8 @@ public class validatorKendaraan {
         }
     }
 
-    public void YesNo(String YesNo) {
-        if(YesNo.equals("N") || YesNo.equals("n")) {
-            inputKendaraan.temp = true;
+    public boolean YesNo(String YesNo) {
+        if(YesNo.equalsIgnoreCase("N")) {
 
             cleanTerminal();
 
@@ -56,12 +55,12 @@ public class validatorKendaraan {
             }
 
             cleanTerminal();
-        } else {
-            inputKendaraan.stopLoop = false;
-        }
+            return true;
+            
+        } else { return false; }
     }
 
-    public void cleanTerminal() {
+    private void cleanTerminal() {
         // * Membersihkan Terminal
         System.out.print("\033[H\033[2J");
 

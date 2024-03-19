@@ -3,6 +3,14 @@ package NonGUI.Classes.Karyawan;
 import java.io.IOException;
 
 public class validatorKaryawan {
+    public boolean Nama(String Nama) {
+        if(Nama.matches(".*\\d.*")) {
+            return true;
+        } else {
+            inputKaryawan.Karyawan[inputKaryawan.getData()].setNama(Nama);
+            return false;
+        }
+    }
     public boolean Telfon(String Telfon) {
         /* 
             ! Syarat
@@ -16,8 +24,7 @@ public class validatorKaryawan {
                 // Ubah string ke long
                 Long.valueOf(Telfon.replaceAll("\\s+",""));
 
-                // Apabila valid, input data
-                inputKaryawan.Karyawan[inputKaryawan.Data].setTelfon(Telfon);
+                inputKaryawan.Karyawan[inputKaryawan.getData()].setTelfon(Telfon);
 
                 return false;
             } catch(NumberFormatException e) {
@@ -34,10 +41,10 @@ public class validatorKaryawan {
 
     public boolean JenisKelamin(String Gender) {
         if(Gender.equalsIgnoreCase("L") || Gender.equalsIgnoreCase("Pria")) {
-            inputKaryawan.Karyawan[inputKaryawan.Data].setJenisKelamin("Lelaki");
+            inputKaryawan.Karyawan[inputKaryawan.getData()].setJenisKelamin("Lelaki");
             return false;
         } else if (Gender.equalsIgnoreCase("P") || Gender.equalsIgnoreCase("Perempuan")) {
-            inputKaryawan.Karyawan[inputKaryawan.Data].setJenisKelamin("Perempuan");
+            inputKaryawan.Karyawan[inputKaryawan.getData()].setJenisKelamin("Perempuan");
             return false;
         } else {
             System.out.println("Jenis Kelamin invalid. Ulangi lagi!");
@@ -48,13 +55,13 @@ public class validatorKaryawan {
 
     public boolean Kategori(String Category) {
         if(Category.equalsIgnoreCase("ST") || Category.replaceAll("\\s+","").equalsIgnoreCase("SupirTravel") || Category.equals("1")) {
-            inputKaryawan.Karyawan[inputKaryawan.Data].setKategori("Supir Travel");
+            inputKaryawan.Karyawan[inputKaryawan.getData()].setKategori("Supir Travel");
             return false;
         } else if (Category.equalsIgnoreCase("SR") || Category.replaceAll("\\s+","").equalsIgnoreCase("SupirTravel") || Category.equals("2")) {
-            inputKaryawan.Karyawan[inputKaryawan.Data].setKategori("Supir Rentcar");
+            inputKaryawan.Karyawan[inputKaryawan.getData()].setKategori("Supir Rentcar");
             return false;
         } else if (Category.equalsIgnoreCase("A") || Category.replaceAll("\\s+","").equalsIgnoreCase("Admin") || Category.equals("3")) {
-            inputKaryawan.Karyawan[inputKaryawan.Data].setKategori("Admin");
+            inputKaryawan.Karyawan[inputKaryawan.getData()].setKategori("Admin");
             return false;
         } else {
             System.out.println("Kategori invalid. Ulangi lagi!");
@@ -65,13 +72,13 @@ public class validatorKaryawan {
 
     public boolean Status(String Status) {
         if(Status.replaceAll("\\s+","").equalsIgnoreCase("Bekerja") || Status.equals("1")) {
-            inputKaryawan.Karyawan[inputKaryawan.Data].setStatus("Bekerja");;
+            inputKaryawan.Karyawan[inputKaryawan.getData()].setStatus("Bekerja");;
             return false;
         } else if (Status.replaceAll("\\s+","").equalsIgnoreCase("Istirahat") || Status.equals("2")) {
-            inputKaryawan.Karyawan[inputKaryawan.Data].setStatus("Istirahat");;
+            inputKaryawan.Karyawan[inputKaryawan.getData()].setStatus("Istirahat");;
             return false;
         } else if (Status.replaceAll("\\s+","").equalsIgnoreCase("Cuti") || Status.equals("3")) {
-            inputKaryawan.Karyawan[inputKaryawan.Data].setStatus("Cuti");
+            inputKaryawan.Karyawan[inputKaryawan.getData()].setStatus("Cuti");
             return false;
         } else {
             System.out.println("Status invalid. Ulangi lagi!");
@@ -82,19 +89,19 @@ public class validatorKaryawan {
 
     public boolean Rute(String Rute) {
         if(Rute.replaceAll("\\s+","").equalsIgnoreCase("Surabaya - Malang") || Rute.equals("1")) {
-            inputKaryawan.Karyawan[inputKaryawan.Data].setRute("Surabaya - Malang");;
+            inputKaryawan.Karyawan[inputKaryawan.getData()].setRute("Surabaya - Malang");;
             return false;
         } else if (Rute.replaceAll("\\s+","").equalsIgnoreCase("Madura - Malang") || Rute.equals("2")) {
-            inputKaryawan.Karyawan[inputKaryawan.Data].setRute("Madura - Malang");
+            inputKaryawan.Karyawan[inputKaryawan.getData()].setRute("Madura - Malang");
             return false;
         } else if (Rute.replaceAll("\\s+","").equalsIgnoreCase("Banyuwangi - Malang") || Rute.equals("3")) {
-            inputKaryawan.Karyawan[inputKaryawan.Data].setRute("Banyuwangi - Malang");;
+            inputKaryawan.Karyawan[inputKaryawan.getData()].setRute("Banyuwangi - Malang");;
             return false;
         } else if (Rute.replaceAll("\\s+","").equalsIgnoreCase("Situbondo - Malang") || Rute.equals("4")) {
-            inputKaryawan.Karyawan[inputKaryawan.Data].setRute("Situbondo - Malang");;
+            inputKaryawan.Karyawan[inputKaryawan.getData()].setRute("Situbondo - Malang");;
             return false;
         }  else if (Rute.replaceAll("\\s+","").equalsIgnoreCase("Tulungagung - Malang") || Rute.equals("5")) {
-            inputKaryawan.Karyawan[inputKaryawan.Data].setRute("Tulungagung - Malang");;
+            inputKaryawan.Karyawan[inputKaryawan.getData()].setRute("Tulungagung - Malang");;
             return false;
         } else {
             System.out.println("Status invalid. Ulangi lagi!");
@@ -103,9 +110,8 @@ public class validatorKaryawan {
         }
     }
 
-    public void YesNo(String YesNo) {
-        if(YesNo.equals("N") || YesNo.equals("n")) {
-            inputKaryawan.temp = true;
+    public boolean YesNo(String YesNo) {
+        if(YesNo.equalsIgnoreCase("N")) {
 
             cleanTerminal();
 
@@ -118,13 +124,12 @@ public class validatorKaryawan {
             }
 
             cleanTerminal();
+            return true;
             
-        } else {
-            inputKaryawan.stopLoop = false;
-        }
+        } else { return false; }
     }
 
-    public void cleanTerminal() {
+    private void cleanTerminal() {
         // Membersihkan terminal
         System.out.print("\033[H\033[2J");
         
